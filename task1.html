@@ -1,0 +1,2223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InAmigos Foundation — Uniting Minds for Change</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --cream: #fdf8f2;
+            --white: #ffffff;
+            --warm: #f5ede0;
+            --accent: #e8773a;
+            --accent2: #2e7d6e;
+            --accent3: #c94f3a;
+            --gold: #d4a843;
+            --dark: #1a1a2e;
+            --mid: #3d3d5c;
+            --text: #3a3a3a;
+            --muted: #7a7a8a;
+            --border: rgba(232, 119, 58, 0.18);
+            --glass-bg: rgba(255, 255, 255, 0.72);
+            --glass-border: rgba(255, 255, 255, 0.9);
+            --shadow-card: 0 8px 40px rgba(60, 40, 10, 0.10);
+            --shadow-hover: 0 16px 56px rgba(60, 40, 10, 0.18);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ─── SCROLLBAR ─── */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5vw;
+            height: 72px;
+            background: rgba(253, 248, 242, 0.88);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(232, 119, 58, 0.12);
+            transition: background 0.3s;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--accent), var(--accent3));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .nav-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .nav-logo-text span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--mid);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+            transform: scaleX(0);
+            transition: transform 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s;
+            box-shadow: 0 4px 20px rgba(232, 119, 58, 0.35);
+        }
+
+        .nav-cta:hover {
+            background: var(--accent3);
+            box-shadow: 0 6px 28px rgba(201, 79, 58, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: var(--dark);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* ─── HERO ─── */
+        #hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding-top: 72px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 60% 40%, rgba(232, 119, 58, 0.12), transparent),
+                radial-gradient(ellipse 50% 50% at 10% 80%, rgba(46, 125, 110, 0.10), transparent),
+                linear-gradient(160deg, #fff8f0 0%, #fdf3e7 40%, #f0f7f5 100%);
+        }
+
+        .hero-bg-img {
+            position: absolute;
+            inset: 0;
+            background: url('https://inamigosfoundation.org.in/public/storage/gallery/1738054458.jpg') center/cover no-repeat;
+            opacity: 0.13;
+        }
+
+        /* Floating words */
+        .float-words {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .float-word {
+            position: absolute;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-style: italic;
+            color: transparent;
+            -webkit-text-stroke: 1.5px rgba(232, 119, 58, 0.18);
+            user-select: none;
+            animation: floatWord linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes floatWord {
+            0% {
+                transform: translateY(0px) rotate(-5deg);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: translateY(-18px) rotate(-5deg);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(0px) rotate(-5deg);
+                opacity: 0.4;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 820px;
+            padding: 0 24px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(232, 119, 58, 0.12);
+            border: 1px solid rgba(232, 119, 58, 0.28);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .hero-badge::before {
+            content: '●';
+            font-size: 0.5rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.3
+            }
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 6vw, 5.2rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .hero-title span {
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1rem, 2vw, 1.45rem);
+            color: var(--accent2);
+            font-style: italic;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--muted);
+            max-width: 560px;
+            margin: 0 auto 36px;
+            line-height: 1.75;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent3));
+            color: white;
+            border: none;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 6px 28px rgba(232, 119, 58, 0.40);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(232, 119, 58, 0.50);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent2);
+            border: 2px solid var(--accent2);
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent2);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(46, 125, 110, 0.30);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: var(--muted);
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            animation: bounceDown 2s infinite;
+        }
+
+        @keyframes bounceDown {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(8px);
+            }
+        }
+
+        /* ─── SECTION UTILS ─── */
+        section {
+            padding: 90px 5vw;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            font-size: 1rem;
+            color: var(--muted);
+            max-width: 520px;
+            line-height: 1.75;
+        }
+
+        .divider {
+            width: 60px;
+            height: 4px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--gold));
+            margin: 16px 0 0;
+        }
+
+        /* ─── ABOUT ─── */
+        #about {
+            background: var(--white);
+        }
+
+        .about-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-img-wrap {
+            position: relative;
+        }
+
+        .about-img-main {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 24px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .about-img-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--accent);
+            color: white;
+            padding: 20px 24px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(232, 119, 58, 0.35);
+        }
+
+        .about-img-badge strong {
+            display: block;
+            font-size: 1.8rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .about-img-badge span {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .about-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 28px;
+        }
+
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(46, 125, 110, 0.09);
+            border: 1px solid rgba(46, 125, 110, 0.2);
+            color: var(--accent2);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        /* ─── STATS ─── */
+        #stats {
+            background: linear-gradient(135deg, var(--dark) 0%, #16213e 50%, #0f3460 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #stats::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(232, 119, 58, 0.15), transparent 70%);
+        }
+
+        #stats::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            left: -60px;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(46, 125, 110, 0.15), transparent 70%);
+        }
+
+        .stats-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 48px 32px;
+            border-right: 1px solid rgba(255, 255, 255, 0.07);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .stat-item:nth-child(3n) {
+            border-right: none;
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 14px;
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: white;
+            line-height: 1;
+        }
+
+        .stat-plus {
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.55);
+            margin-top: 8px;
+            letter-spacing: 0.04em;
+        }
+
+        .stats-header {
+            text-align: center;
+            margin-bottom: 56px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stats-header .section-title {
+            color: white;
+        }
+
+        .stats-header .section-label {
+            color: var(--gold);
+        }
+
+        /* ─── PROJECTS ─── */
+        #projects {
+            background: var(--cream);
+        }
+
+        .projects-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .projects-header .section-sub {
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 28px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1.5px solid var(--glass-border);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--border);
+        }
+
+        .project-card-top {
+            padding: 28px 28px 20px;
+            position: relative;
+        }
+
+        .project-icon-wrap {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 18px;
+        }
+
+        .project-tag {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 50px;
+        }
+
+        .project-name {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .project-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 14px;
+            line-height: 1.3;
+        }
+
+        .project-points {
+            list-style: none;
+            margin-bottom: 18px;
+        }
+
+        .project-points li {
+            font-size: 0.88rem;
+            color: var(--muted);
+            padding: 4px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .project-points li::before {
+            content: '›';
+            color: var(--accent);
+            font-size: 1.1rem;
+            line-height: 1.3;
+            flex-shrink: 0;
+        }
+
+        .project-impact {
+            margin: 0 28px 28px;
+            padding: 14px 18px;
+            border-radius: 14px;
+            font-size: 0.87rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .project-divider {
+            height: 4px;
+            margin: 0 28px 24px;
+            border-radius: 4px;
+            opacity: 0.25;
+        }
+
+        /* Project colors */
+        .seva {
+            --pc: #e8773a;
+            --pcl: rgba(232, 119, 58, 0.10);
+        }
+
+        .bach {
+            --pc: #2e7d6e;
+            --pcl: rgba(46, 125, 110, 0.10);
+        }
+
+        .udaan {
+            --pc: #c94f3a;
+            --pcl: rgba(201, 79, 58, 0.10);
+        }
+
+        .jeev {
+            --pc: #d4a843;
+            --pcl: rgba(212, 168, 67, 0.10);
+        }
+
+        .prakriti {
+            --pc: #3d7a4a;
+            --pcl: rgba(61, 122, 74, 0.10);
+        }
+
+        .vikas {
+            --pc: #4a6fa5;
+            --pcl: rgba(74, 111, 165, 0.10);
+        }
+
+        .project-card .project-icon-wrap {
+            background: var(--pcl);
+            color: var(--pc);
+        }
+
+        .project-card .project-tag {
+            background: var(--pcl);
+            color: var(--pc);
+        }
+
+        .project-card .project-name {
+            color: var(--pc);
+        }
+
+        .project-card .project-impact {
+            background: var(--pcl);
+            color: var(--pc);
+        }
+
+        .project-card .project-divider {
+            background: var(--pc);
+        }
+
+        /* ─── WHY IT MATTERS ─── */
+        #why {
+            background: linear-gradient(160deg, var(--warm) 0%, #edf7f5 100%);
+        }
+
+        .why-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .why-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .why-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px 24px;
+            border-radius: 18px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .why-item:hover {
+            transform: translateX(6px);
+        }
+
+        .why-item-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .why-item-text h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .why-item-text p {
+            font-size: 0.875rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .why-visual {
+            position: relative;
+        }
+
+        .why-img-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .why-img-cell {
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            transition: transform 0.3s;
+        }
+
+        .why-img-cell:hover {
+            transform: scale(1.03);
+        }
+
+        .why-img-cell img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .why-img-cell:first-child {
+            grid-row: span 2;
+        }
+
+        .why-img-cell:first-child img {
+            height: 100%;
+        }
+
+        /* ─── GALLERY ─── */
+        #gallery {
+            background: var(--white);
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        /* Filter tabs */
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 36px;
+        }
+
+        .gf-btn {
+            padding: 8px 22px;
+            border-radius: 50px;
+            border: 1.5px solid rgba(232, 119, 58, 0.25);
+            background: transparent;
+            color: var(--muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.22s;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .gf-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .gf-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            box-shadow: 0 4px 16px rgba(232, 119, 58, 0.32);
+        }
+
+        /* Square grid */
+        .gallery-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1 / 1;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(60, 40, 10, 0.09);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.32s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(60, 40, 10, 0.18);
+            z-index: 2;
+        }
+
+        /* Feature: first item spans 2×2 */
+        .gallery-item.featured {
+            grid-column: span 2;
+            grid-row: span 2;
+            border-radius: 20px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Overlay with label + zoom icon */
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, rgba(26, 26, 46, 0.0) 40%, rgba(26, 26, 46, 0.72) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 18px 20px;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay-tag {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: rgba(232, 119, 58, 0.22);
+            border-radius: 50px;
+            padding: 3px 10px;
+            display: inline-block;
+            margin-bottom: 6px;
+            width: fit-content;
+        }
+
+        .gallery-overlay-label {
+            color: white;
+            font-weight: 600;
+            font-size: 0.92rem;
+            line-height: 1.3;
+        }
+
+        .gallery-zoom-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            transform: scale(0.7);
+        }
+
+        .gallery-item:hover .gallery-zoom-btn {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(10, 10, 20, 0.92);
+            backdrop-filter: blur(16px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox-inner {
+            position: relative;
+            max-width: 860px;
+            width: 100%;
+            animation: lbIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes lbIn {
+            from {
+                opacity: 0;
+                transform: scale(0.88);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .lightbox-inner img {
+            width: 100%;
+            border-radius: 20px;
+            max-height: 80vh;
+            object-fit: contain;
+            box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-caption {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.75);
+            margin-top: 16px;
+            font-size: 0.95rem;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -16px;
+            right: -16px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(232, 119, 58, 0.45);
+            transition: transform 0.2s;
+        }
+
+        .lightbox-close:hover {
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--accent);
+        }
+
+        .lightbox-prev {
+            left: -60px;
+        }
+
+        .lightbox-next {
+            right: -60px;
+        }
+
+        .lightbox-dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 14px;
+        }
+
+        .lb-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            padding: 0;
+        }
+
+        .lb-dot.active {
+            background: var(--accent);
+            transform: scale(1.3);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-item.featured {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .lightbox-prev {
+                left: -12px;
+            }
+
+            .lightbox-next {
+                right: -12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+        }
+
+        /* ─── CTA / JOIN ─── */
+        #join {
+            background: var(--cream);
+        }
+
+        .join-header {
+            text-align: center;
+            margin-bottom: 52px;
+        }
+
+        .join-cards {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .join-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px 32px;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(232, 119, 58, 0.08);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .join-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--border);
+        }
+
+        .join-card-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 22px;
+            margin: 0 auto 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .join-card:nth-child(1) .join-card-icon {
+            background: rgba(232, 119, 58, 0.12);
+            color: var(--accent);
+        }
+
+        .join-card:nth-child(2) .join-card-icon {
+            background: rgba(201, 79, 58, 0.12);
+            color: var(--accent3);
+        }
+
+        .join-card:nth-child(3) .join-card-icon {
+            background: rgba(46, 125, 110, 0.12);
+            color: var(--accent2);
+        }
+
+        .join-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .join-card p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .btn-card {
+            display: inline-block;
+            padding: 11px 28px;
+            border-radius: 50px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s;
+            border: 2px solid;
+        }
+
+        .join-card:nth-child(1) .btn-card {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .join-card:nth-child(1) .btn-card:hover {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 6px 24px rgba(232, 119, 58, 0.35);
+        }
+
+        .join-card:nth-child(2) .btn-card {
+            color: var(--accent3);
+            border-color: var(--accent3);
+        }
+
+        .join-card:nth-child(2) .btn-card:hover {
+            background: var(--accent3);
+            color: white;
+            box-shadow: 0 6px 24px rgba(201, 79, 58, 0.35);
+        }
+
+        .join-card:nth-child(3) .btn-card {
+            color: var(--accent2);
+            border-color: var(--accent2);
+        }
+
+        .join-card:nth-child(3) .btn-card:hover {
+            background: var(--accent2);
+            color: white;
+            box-shadow: 0 6px 24px rgba(46, 125, 110, 0.35);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 64px 5vw 32px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 16px;
+            margin-bottom: 24px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.07);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .social-btn:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.88rem;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 28px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .cert-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .cert-badge {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stats-inner {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .nav-links,
+            .nav-cta {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .about-inner,
+            .why-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .join-cards {
+                grid-template-columns: 1fr;
+                max-width: 440px;
+            }
+
+            .stats-inner {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-item:nth-child(1) {
+                grid-column: span 2;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stat-item {
+                padding: 32px 16px;
+            }
+
+            .stat-num {
+                font-size: 2.2rem;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item:nth-child(1) {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a class="nav-logo" href="#">
+            <div class="nav-logo-icon">IA</div>
+            <div class="nav-logo-text">In<span>Amigos</span></div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#stats">Impact</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#join">Join Us</a></li>
+        </ul>
+        <button class="nav-cta" onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})">Volunteer
+            Now</button>
+        <div class="hamburger" onclick="toggleNav()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-bg-img"></div>
+
+        <!-- Floating words -->
+        <div class="float-words">
+            <span class="float-word"
+                style="font-size:5rem;top:12%;left:3%;animation-duration:6s;animation-delay:0s;">Impact</span>
+            <span class="float-word"
+                style="font-size:3.5rem;top:65%;left:6%;animation-duration:8s;animation-delay:1s;">Education</span>
+            <span class="float-word"
+                style="font-size:4rem;top:20%;right:4%;animation-duration:7s;animation-delay:0.5s;">Empowerment</span>
+            <span class="float-word"
+                style="font-size:3rem;top:70%;right:6%;animation-duration:9s;animation-delay:2s;">Volunteer</span>
+            <span class="float-word"
+                style="font-size:4.5rem;top:45%;left:1%;animation-duration:10s;animation-delay:1.5s;">Change</span>
+            <span class="float-word"
+                style="font-size:3.2rem;bottom:18%;right:3%;animation-duration:7.5s;animation-delay:0.8s;">Sustainability</span>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                Founded 2020 · Section 8 NGO · ISO 9001:2015 Certified
+            </div>
+            <h1 class="hero-title">
+                Uniting <span>Minds</span><br>for Change
+            </h1>
+            <p class="hero-subtitle">"Empowering Communities. Creating Sustainable Impact."</p>
+            <p class="hero-desc">
+                InAmigos Foundation works across 28 states of India through education, food distribution,
+                women empowerment, environmental sustainability, animal welfare, and skill development.
+            </p>
+            <div class="hero-btns">
+                <a href="#join" class="btn-primary">
+                    <i class="fas fa-heart"></i> Become a Volunteer
+                </a>
+                <a href="#projects" class="btn-outline">
+                    <i class="fas fa-seedling"></i> Explore Projects
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="about-inner">
+            <div class="about-img-wrap" data-aos="fade-right">
+                <img class="about-img-main"
+                    src="https://inamigosfoundation.org.in/public/storage/gallery/1738054440.jpg"
+                    alt="InAmigos Foundation team"
+                    onerror="this.src='https://inamigosfoundation.org.in/public/storage/gallery/1690908380.jpg'">
+                <div class="about-img-badge">
+                    <strong>2020</strong>
+                    <span>Founded</span>
+                </div>
+            </div>
+            <div data-aos="fade-left">
+                <span class="section-label">About InAmigos</span>
+                <h2 class="section-title">A Foundation Built<br>on Compassion</h2>
+                <div class="divider"></div>
+                <p style="margin-top:20px;color:var(--muted);line-height:1.85;font-size:0.98rem;">
+                    InAmigos Foundation is a Section 8 registered non-profit organization founded on
+                    <strong>23 September 2020</strong> by <strong>Govind Shukla</strong>. Headquartered in
+                    Bilaspur, Chhattisgarh, the foundation works across India to create lasting social impact
+                    through six major initiatives.
+                </p>
+                <p style="margin-top:16px;color:var(--muted);line-height:1.85;font-size:0.98rem;">
+                    Our mission — <em>"Uniting Minds for Change"</em> — drives every action we take,
+                    from feeding underprivileged families to planting thousands of saplings for a greener tomorrow.
+                </p>
+                <div class="about-badges">
+                    <span class="badge-pill"><i class="fas fa-check-circle"></i> 80G &amp; 12A</span>
+                    <span class="badge-pill"><i class="fas fa-check-circle"></i> CSR-1 Registered</span>
+                    <span class="badge-pill"><i class="fas fa-check-circle"></i> NITI Aayog</span>
+                    <span class="badge-pill"><i class="fas fa-check-circle"></i> ISO 9001:2015</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section id="stats">
+        <div class="stats-header" data-aos="fade-up">
+            <span class="section-label">Our Impact</span>
+            <h2 class="section-title">Numbers That Speak<br>Louder Than Words</h2>
+        </div>
+        <div class="stats-inner">
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
+                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                <div class="stat-num"><span class="counter" data-target="50000">0</span><span class="stat-plus">+</span>
+                </div>
+                <div class="stat-label">Beneficiaries Reached</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="80">
+                <div class="stat-icon"><i class="fas fa-hands-helping"></i></div>
+                <div class="stat-num"><span class="counter" data-target="200">0</span><span class="stat-plus">+</span>
+                </div>
+                <div class="stat-label">Active Volunteers</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="160">
+                <div class="stat-icon"><i class="fas fa-map-marked-alt"></i></div>
+                <div class="stat-num"><span class="counter" data-target="28">0</span></div>
+                <div class="stat-label">States Across India</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
+                <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="stat-num"><span class="counter" data-target="30000">0</span><span class="stat-plus">+</span>
+                </div>
+                <div class="stat-label">Interns Trained</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="80">
+                <div class="stat-icon"><i class="fas fa-tree"></i></div>
+                <div class="stat-num"><span class="counter" data-target="20000">0</span><span class="stat-plus">+</span>
+                </div>
+                <div class="stat-label">Trees Planted</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="160">
+                <div class="stat-icon"><i class="fas fa-utensils"></i></div>
+                <div class="stat-num"><span class="counter" data-target="50000">0</span><span class="stat-plus">+</span>
+                </div>
+                <div class="stat-label">Meals Distributed</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="projects-header" data-aos="fade-up">
+            <span class="section-label">Our Work</span>
+            <h2 class="section-title">Six Pillars of Change</h2>
+            <p class="section-sub">Each project targets a critical need in our communities — together they form a
+                holistic ecosystem of care.</p>
+        </div>
+
+        <div class="projects-grid">
+
+            <!-- SEVA -->
+            <div class="project-card seva" data-aos="fade-up" data-aos-delay="0">
+                <div class="project-card-top">
+                    <div class="project-tag">Humanitarian</div>
+                    <div class="project-icon-wrap"><i class="fas fa-hands-holding-heart"></i></div>
+                    <div class="project-name">Project SEVA</div>
+                    <div class="project-title">Serving Humanity<br>with Compassion</div>
+                    <ul class="project-points">
+                        <li>Food distribution drives across communities</li>
+                        <li>Clothing distribution for underprivileged</li>
+                        <li>Support for vulnerable families</li>
+                        <li>50,000+ meals and clothing distributed</li>
+                    </ul>
+                </div>
+                <div class="project-divider"></div>
+                <div class="project-impact">
+                    <i class="fas fa-star" style="margin-right:6px;"></i>
+                    Reduces hunger and provides basic necessities to vulnerable communities.
+                </div>
+            </div>
+
+            <!-- BACHPANSHALA -->
+            <div class="project-card bach" data-aos="fade-up" data-aos-delay="80">
+                <div class="project-card-top">
+                    <div class="project-tag">Education</div>
+                    <div class="project-icon-wrap"><i class="fas fa-book-open"></i></div>
+                    <div class="project-name">Project BACHPANSHALA</div>
+                    <div class="project-title">Nurturing Young Minds,<br>Building Bright Futures</div>
+                    <ul class="project-points">
+                        <li>Educational support for children</li>
+                        <li>Digital literacy training</li>
+                        <li>Basic education programs</li>
+                        <li>Life skills development</li>
+                    </ul>
+                </div>
+                <div class="project-divider"></div>
+                <div class="project-impact">
+                    <i class="fas fa-star" style="margin-right:6px;"></i>
+                    Helps children from disadvantaged backgrounds access quality education.
+                </div>
+            </div>
+
+            <!-- UDAAN -->
+            <div class="project-card udaan" data-aos="fade-up" data-aos-delay="160">
+                <div class="project-card-top">
+                    <div class="project-tag">Women Empowerment</div>
+                    <div class="project-icon-wrap"><i class="fas fa-female"></i></div>
+                    <div class="project-name">Project UDAAN</div>
+                    <div class="project-title">Women Empowerment<br>Initiative</div>
+                    <ul class="project-points">
+                        <li>Skill development programs</li>
+                        <li>Financial literacy training</li>
+                        <li>Menstrual hygiene awareness</li>
+                        <li>Self-help group collaborations</li>
+                    </ul>
+                </div>
+                <div class="project-divider"></div>
+                <div class="project-impact">
+                    <i class="fas fa-star" style="margin-right:6px;"></i>
+                    Empowers women to become financially independent. 900+ women impacted.
+                </div>
+            </div>
+
+            <!-- JEEV -->
+            <div class="project-card jeev" data-aos="fade-up" data-aos-delay="0">
+                <div class="project-card-top">
+                    <div class="project-tag">Animal Welfare</div>
+                    <div class="project-icon-wrap"><i class="fas fa-paw"></i></div>
+                    <div class="project-name">Project JEEV</div>
+                    <div class="project-title">Animal Welfare<br>Initiative</div>
+                    <ul class="project-points">
+                        <li>Feeding stray animals daily</li>
+                        <li>Animal rescue operations</li>
+                        <li>Protection and care drives</li>
+                    </ul>
+                </div>
+                <div class="project-divider"></div>
+                <div class="project-impact">
+                    <i class="fas fa-star" style="margin-right:6px;"></i>
+                    Ensures better welfare for stray animals. 50+ animals fed daily.
+                </div>
+            </div>
+
+            <!-- PRAKRITI -->
+            <div class="project-card prakriti" data-aos="fade-up" data-aos-delay="80">
+                <div class="project-card-top">
+                    <div class="project-tag">Environment</div>
+                    <div class="project-icon-wrap"><i class="fas fa-seedling"></i></div>
+                    <div class="project-name">Project PRAKRITI</div>
+                    <div class="project-title">Environmental<br>Conservation</div>
+                    <ul class="project-points">
+                        <li>Tree plantation drives</li>
+                        <li>Sustainability campaigns</li>
+                        <li>Environmental awareness programs</li>
+                    </ul>
+                </div>
+                <div class="project-divider"></div>
+                <div class="project-impact">
+                    <i class="fas fa-star" style="margin-right:6px;"></i>
+                    20,000+ saplings planted to support a greener future.
+                </div>
+            </div>
+
+            <!-- VIKAS -->
+            <div class="project-card vikas" data-aos="fade-up" data-aos-delay="160">
+                <div class="project-card-top">
+                    <div class="project-tag">Skill Development</div>
+                    <div class="project-icon-wrap"><i class="fas fa-briefcase"></i></div>
+                    <div class="project-name">Project VIKAS</div>
+                    <div class="project-title">Skill Development<br>&amp; Employability</div>
+                    <ul class="project-points">
+                        <li>Internship opportunities</li>
+                        <li>Professional training programs</li>
+                        <li>Career development &amp; mentoring</li>
+                    </ul>
+                </div>
+                <div class="project-divider"></div>
+                <div class="project-impact">
+                    <i class="fas fa-star" style="margin-right:6px;"></i>
+                    30,000+ interns trained in content, research, finance, digital marketing &amp; more.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- WHY IT MATTERS -->
+    <section id="why">
+        <div class="why-inner">
+            <div data-aos="fade-right">
+                <span class="section-label">Why Our Work Matters</span>
+                <h2 class="section-title">Every Action Creates<br>a Ripple of Change</h2>
+                <div class="divider"></div>
+                <ul class="why-list" style="margin-top:32px;">
+                    <li class="why-item">
+                        <div class="why-item-icon"><i class="fas fa-child"></i></div>
+                        <div class="why-item-text">
+                            <h4>Breaking the Cycle of Poverty</h4>
+                            <p>Through education and skill-building, we give underprivileged communities the tools to
+                                build better futures.</p>
+                        </div>
+                    </li>
+                    <li class="why-item">
+                        <div class="why-item-icon"><i class="fas fa-venus"></i></div>
+                        <div class="why-item-text">
+                            <h4>Empowering 50% of Society</h4>
+                            <p>Women's financial independence creates stronger families and more resilient communities
+                                nationwide.</p>
+                        </div>
+                    </li>
+                    <li class="why-item">
+                        <div class="why-item-icon"><i class="fas fa-globe-asia"></i></div>
+                        <div class="why-item-text">
+                            <h4>Protecting Our Planet</h4>
+                            <p>Every sapling planted and campaign run brings India closer to a sustainable ecological
+                                balance.</p>
+                        </div>
+                    </li>
+                    <li class="why-item">
+                        <div class="why-item-icon"><i class="fas fa-heart"></i></div>
+                        <div class="why-item-text">
+                            <h4>Compassion Without Borders</h4>
+                            <p>From stray animals to marginalized humans, we believe every life deserves dignity and
+                                care.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="why-visual" data-aos="fade-left">
+                <div class="why-img-grid">
+                    <div class="why-img-cell">
+                        <img src="https://inamigosfoundation.org.in/public/storage/gallery/1690908380.jpg"
+                            alt="Community work">
+                    </div>
+                    <div class="why-img-cell">
+                        <img src="https://inamigosfoundation.org.in/public/storage/gallery/1738238755.JPG"
+                            alt="Event activity"
+                            onerror="this.src='https://inamigosfoundation.org.in/public/storage/gallery/1743051485.jpg'">
+                    </div>
+                    <div class="why-img-cell">
+                        <img src="https://inamigosfoundation.org.in/public/storage/gallery/1743051485.jpg"
+                            alt="InAmigos volunteers">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+        <div class="gallery-header" data-aos="fade-up">
+            <span class="section-label">Our Gallery</span>
+            <h2 class="section-title">Moments of Impact</h2>
+            <p class="section-sub" style="margin:10px auto 0;">A glimpse into the lives we touch and the change we
+                create every day.</p>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="gallery-filters" data-aos="fade-up" data-aos-delay="60">
+            <button class="gf-btn active" data-filter="all">All</button>
+            <button class="gf-btn" data-filter="seva">SEVA</button>
+            <button class="gf-btn" data-filter="education">BACHPANSHALA</button>
+            <button class="gf-btn" data-filter="environment">PRAKRITI</button>
+            <button class="gf-btn" data-filter="community">Community</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid" style="max-width:1200px;margin:0 auto;">
+
+            <!-- Item 1 — featured 2×2 -->
+            <div class="gallery-item featured" data-aos="zoom-in" data-aos-delay="0" data-cat="seva"
+                data-label="Project SEVA — Food Distribution Drive"
+                data-src="https://inamigosfoundation.org.in/public/storage/gallery/1738054458.jpg">
+                <img src="https://inamigosfoundation.org.in/public/storage/gallery/1738054458.jpg"
+                    alt="SEVA Food Distribution">
+                <div class="gallery-overlay">
+                    <span class="gallery-overlay-tag">SEVA</span>
+                    <span class="gallery-overlay-label">Food Distribution Drive</span>
+                </div>
+                <button class="gallery-zoom-btn"><i class="fas fa-expand-alt"></i></button>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="60" data-cat="community"
+                data-label="Community Event — Spreading Joy"
+                data-src="https://inamigosfoundation.org.in/public/storage/gallery/1738238755.JPG">
+                <img src="https://inamigosfoundation.org.in/public/storage/gallery/1738238755.JPG" alt="Community Event"
+                    onerror="this.src='https://inamigosfoundation.org.in/public/storage/gallery/1743051485.jpg'">
+                <div class="gallery-overlay">
+                    <span class="gallery-overlay-tag">Community</span>
+                    <span class="gallery-overlay-label">Spreading Joy</span>
+                </div>
+                <button class="gallery-zoom-btn"><i class="fas fa-expand-alt"></i></button>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="120" data-cat="seva"
+                data-label="Volunteer Activities — Serving the Community"
+                data-src="https://inamigosfoundation.org.in/public/storage/gallery/1738054440.jpg">
+                <img src="https://inamigosfoundation.org.in/public/storage/gallery/1738054440.jpg" alt="Volunteer Work">
+                <div class="gallery-overlay">
+                    <span class="gallery-overlay-tag">Volunteers</span>
+                    <span class="gallery-overlay-label">Serving the Community</span>
+                </div>
+                <button class="gallery-zoom-btn"><i class="fas fa-expand-alt"></i></button>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="60" data-cat="education"
+                data-label="Project BACHPANSHALA — Education for All"
+                data-src="https://inamigosfoundation.org.in/public/storage/gallery/1690908380.jpg">
+                <img src="https://inamigosfoundation.org.in/public/storage/gallery/1690908380.jpg"
+                    alt="Education Program">
+                <div class="gallery-overlay">
+                    <span class="gallery-overlay-tag">BACHPANSHALA</span>
+                    <span class="gallery-overlay-label">Education for All</span>
+                </div>
+                <button class="gallery-zoom-btn"><i class="fas fa-expand-alt"></i></button>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="120" data-cat="environment"
+                data-label="Project PRAKRITI — Tree Plantation Drive"
+                data-src="https://inamigosfoundation.org.in/public/storage/gallery/1743051485.jpg">
+                <img src="https://inamigosfoundation.org.in/public/storage/gallery/1743051485.jpg"
+                    alt="PRAKRITI Tree Plantation">
+                <div class="gallery-overlay">
+                    <span class="gallery-overlay-tag">PRAKRITI</span>
+                    <span class="gallery-overlay-label">Tree Plantation Drive</span>
+                </div>
+                <button class="gallery-zoom-btn"><i class="fas fa-expand-alt"></i></button>
+            </div>
+
+            <!-- Item 6 — repeat with different label for grid balance -->
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="180" data-cat="community"
+                data-label="InAmigos Team — United for Change"
+                data-src="https://inamigosfoundation.org.in/public/storage/gallery/1738054458.jpg">
+                <img src="https://inamigosfoundation.org.in/public/storage/gallery/1738054458.jpg" alt="InAmigos Team">
+                <div class="gallery-overlay">
+                    <span class="gallery-overlay-tag">Team</span>
+                    <span class="gallery-overlay-label">United for Change</span>
+                </div>
+                <button class="gallery-zoom-btn"><i class="fas fa-expand-alt"></i></button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-inner">
+            <button class="lightbox-close" id="lbClose"><i class="fas fa-times"></i></button>
+            <button class="lightbox-nav lightbox-prev" id="lbPrev"><i class="fas fa-chevron-left"></i></button>
+            <button class="lightbox-nav lightbox-next" id="lbNext"><i class="fas fa-chevron-right"></i></button>
+            <img id="lbImg" src="" alt="">
+            <p class="lightbox-caption" id="lbCaption"></p>
+            <div class="lightbox-dots" id="lbDots"></div>
+        </div>
+    </div>
+
+    <!-- JOIN US -->
+    <section id="join">
+        <div class="join-header" data-aos="fade-up">
+            <span class="section-label">Get Involved</span>
+            <h2 class="section-title">Be the Change You<br>Wish to See</h2>
+            <p class="section-sub" style="margin:12px auto 0;">Three ways to join our mission and make a lasting
+                difference across India.</p>
+        </div>
+        <div class="join-cards">
+            <div class="join-card" data-aos="fade-up" data-aos-delay="0">
+                <div class="join-card-icon"><i class="fas fa-hands-holding-heart"></i></div>
+                <h3>Become a Volunteer</h3>
+                <p>Join InAmigos Foundation and contribute your skills to make a positive impact in society. No
+                    experience needed — just a willing heart.</p>
+                <a href="https://forms.gle/AB4c1hLaDDmtrKGU7" target="_blank" class="btn-card">Join as Volunteer</a>
+            </div>
+            <div class="join-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="join-card-icon"><i class="fas fa-donate"></i></div>
+                <h3>Support Our Cause</h3>
+                <p>Help us create change through donations, awareness campaigns, and community participation. Every
+                    contribution counts.</p>
+                <a href="https://rzp.io/l/kWQ87HP" target="_blank" class="btn-card">Donate Now</a>
+            </div>
+            <div class="join-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="join-card-icon"><i class="fas fa-rocket"></i></div>
+                <h3>Join Our Mission</h3>
+                <p>Together we can build a more inclusive, compassionate, and empowered society. Explore internship and
+                    partnership opportunities.</p>
+                <a href="mailto:support@inamigosfoundation.org.in" class="btn-card">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
+                    <div
+                        style="width:40px;height:40px;background:linear-gradient(135deg,var(--accent),var(--accent3));border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1rem;">
+                        IA</div>
+                    <span
+                        style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:white;">InAmigos
+                        Foundation</span>
+                </div>
+                <p>Uniting Minds for Change — a Section 8 non-profit organization working across 28 states to create
+                    sustainable social development.</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/inamigos.inamigos" class="social-btn" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/inamigos/" class="social-btn" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/inamigos-foundation" class="social-btn" target="_blank"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a href="https://twitter.com" class="social-btn" target="_blank"><i
+                            class="fab fa-x-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Our Projects</h4>
+                <ul class="footer-links">
+                    <li><a href="#projects">Project SEVA</a></li>
+                    <li><a href="#projects">Project BACHPANSHALA</a></li>
+                    <li><a href="#projects">Project UDAAN</a></li>
+                    <li><a href="#projects">Project JEEV</a></li>
+                    <li><a href="#projects">Project PRAKRITI</a></li>
+                    <li><a href="#projects">Project VIKAS</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#stats">Our Impact</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#join">Volunteer</a></li>
+                    <li><a href="https://rzp.io/l/kWQ87HP" target="_blank">Donate</a></li>
+                    <li><a href="https://inamigosfoundation.org.in/blog" target="_blank">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Ward No. 5, Gram Post, Sipat Ujwal Nagar, Bilaspur, Chhattisgarh – 495555</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:support@inamigosfoundation.org.in"
+                            style="color:inherit;text-decoration:none;">support@inamigosfoundation.org.in</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+916267309902" style="color:inherit;text-decoration:none;">+91 626 730 9902</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2024 InAmigos Foundation. All rights reserved.</span>
+            <div class="cert-badges">
+                <span class="cert-badge">80G</span>
+                <span class="cert-badge">12A</span>
+                <span class="cert-badge">CSR-1</span>
+                <span class="cert-badge">NITI Aayog</span>
+                <span class="cert-badge">ISO 9001:2015</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 60 });
+
+        // ── Animated counter ──
+        function animateCounter(el) {
+            const target = parseInt(el.dataset.target);
+            const duration = 2000;
+            const start = performance.now();
+            function step(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.floor(eased * target).toLocaleString();
+                if (progress < 1) requestAnimationFrame(step);
+                else el.textContent = target.toLocaleString();
+            }
+            requestAnimationFrame(step);
+        }
+
+        const counters = document.querySelectorAll('.counter');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { animateCounter(e.target); observer.unobserve(e.target); }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(c => observer.observe(c));
+
+        // ── Gallery filter ──
+        const filterBtns = document.querySelectorAll('.gf-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                galleryItems.forEach(item => {
+                    const cat = item.dataset.cat;
+                    const show = filter === 'all' || cat === filter;
+                    item.style.opacity = show ? '1' : '0.15';
+                    item.style.transform = show ? '' : 'scale(0.92)';
+                    item.style.pointerEvents = show ? '' : 'none';
+                    item.style.transition = 'opacity 0.35s, transform 0.35s';
+                });
+            });
+        });
+
+        // ── Lightbox ──
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lbImg');
+        const lbCaption = document.getElementById('lbCaption');
+        const lbDots = document.getElementById('lbDots');
+        const lbClose = document.getElementById('lbClose');
+        const lbPrev = document.getElementById('lbPrev');
+        const lbNext = document.getElementById('lbNext');
+
+        // Collect all items as array
+        let lbIndex = 0;
+        const getVisibleItems = () =>
+            [...galleryItems].filter(i => i.style.opacity !== '0.15');
+
+        function openLightbox(idx) {
+            const items = getVisibleItems();
+            lbIndex = idx;
+            const item = items[idx];
+            lbImg.src = item.dataset.src;
+            lbImg.alt = item.dataset.label;
+            lbCaption.textContent = item.dataset.label;
+            // dots
+            lbDots.innerHTML = items.map((_, i) =>
+                `<button class="lb-dot${i === idx ? ' active' : ''}" data-i="${i}"></button>`
+            ).join('');
+            lbDots.querySelectorAll('.lb-dot').forEach(d => {
+                d.addEventListener('click', () => openLightbox(+d.dataset.i));
+            });
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // Attach click to every gallery item
+        galleryItems.forEach((item, i) => {
+            item.addEventListener('click', () => {
+                const visible = getVisibleItems();
+                const visibleIdx = visible.indexOf(item);
+                if (visibleIdx !== -1) openLightbox(visibleIdx);
+            });
+        });
+
+        lbClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+
+        lbPrev.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const items = getVisibleItems();
+            openLightbox((lbIndex - 1 + items.length) % items.length);
+        });
+        lbNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const items = getVisibleItems();
+            openLightbox((lbIndex + 1) % items.length);
+        });
+
+        document.addEventListener('keydown', e => {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') lbPrev.click();
+            if (e.key === 'ArrowRight') lbNext.click();
+        });
+
+        // ── Mobile nav ──
+        function toggleNav() {
+            const links = document.querySelector('.nav-links');
+            const cta = document.querySelector('.nav-cta');
+            if (links.style.display === 'flex') {
+                links.style.display = ''; cta.style.display = '';
+            } else {
+                links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:rgba(253,248,242,0.97);padding:20px 5vw;gap:16px;border-bottom:1px solid rgba(232,119,58,0.1);';
+                cta.style.cssText = 'display:block;margin:8px 5vw 12px;text-align:center;';
+            }
+        }
+    </script>
+</body>
+
+</html>
